@@ -182,7 +182,7 @@ function cleanArray(arr) {
   return cleaned.join(" ");
 }
 
-console.log(cleanArray(testArray)); // Utskrift: "this text needs to be cleaned up"
+console.log(cleanArray(testArray));
 
 /******************************************************************************
 4.
@@ -223,10 +223,10 @@ function doubleSwap(string, charA, charB) {
   return result;
 }
 
-console.log(doubleSwap("this is a string", "i", "s")); // "thsi si a itrsng"
-console.log(doubleSwap("m#ybe #nother #ppro#ch is necess#ry", "#", "a")); // "maybe another approach is necessary"
-console.log(doubleSwap("what is the point of this?", "o", "t")); // "whao is ohe ptino tf ohis?"
-console.log(doubleSwap("hello", "l", "h")); // "lehho"
+console.log(doubleSwap("this is a string", "i", "s"));
+console.log(doubleSwap("m#ybe #nother #ppro#ch is necess#ry", "#", "a"));
+console.log(doubleSwap("what is the point of this?", "o", "t"));
+console.log(doubleSwap("hello", "l", "h"));
 /******************************************************************************
 5.
 
@@ -258,17 +258,6 @@ Jeg har lagt til noen testvariabler for å sjekke funksjonen din.
 
 ******************************************************************************/
 
-const greetings = [
-  "Hello, how are you today?",
-  "Diciamo ciao prima di andare!",
-  "Salut, ça va bien?",
-  "Kannst du mich hören? Hallo!",
-  "Hva er regex?",
-  "Nos saludamos con un alegre hola.",
-  "Ona pomachała i powiedziała cześć z uśmiechem.",
-  "Good afternoon gentlemen!",
-];
-
 function helloChecker(str) {
   const greetingsMap = {
     hello: "engelsk",
@@ -279,15 +268,26 @@ function helloChecker(str) {
     czesc: "polsk",
   };
 
-  const words = str.toLowerCase().split(" ");
+  const cleanStr = str.toLowerCase().replace(/[\W+]/g, " "); //fjærner alle alpha numeriske tegn
+  const words = cleanStr.split(" ");
 
   for (let word of words) {
     if (greetingsMap[word]) {
-      return `HELLO oppdaget på ${greetingsMap[word]}.`;
+      return `Hello oppdaget på ${greetingsMap[word]}.`;
     }
   }
 
-  return "Ingen HELLO oppdaget.";
+  return "Ingen Hello oppdaget.";
 }
 
-// Skriv koden for oppgave 5 her
+// Testet noen greetings fra ai og fikk varierte resultater
+console.log(helloChecker("HELLO! What's up?"));
+console.log(helloChecker("Ciao... come stai?"));
+console.log(helloChecker("Salut!!! Ça va?"));
+console.log(helloChecker("Hallo, wie geht's?"));
+console.log(helloChecker("¡Hola! Bienvenidos."));
+console.log(helloChecker("Cześć, co słychać?"));
+console.log(helloChecker("Hey, what's the time?"));
+console.log(helloChecker("Hello, ciao, salut!"));
+console.log(helloChecker("Regex er gøy!"));
+console.log(helloChecker("hOlA, amigos!"));
